@@ -6,7 +6,7 @@
 
 - PHP 7.4+
 - Composer
-- PHPUnit/Pest (для тестування)
+- PHPUnit (для тестування)
 - Mockery (для мокінгу HTTP-клієнта)
 
 ## Запуск тестів
@@ -14,25 +14,20 @@
 Для запуску тестів використовуйте:
 
 ```bash
-# Запуск через Pest (рекомендовано)
-vendor/bin/pest
-
-# Або через PHPUnit
+# Запуск тестів через PHPUnit
 vendor/bin/phpunit
 ```
 
 Для запуску окремого тесту:
 
 ```bash
-vendor/bin/pest tests/Unit/Api/AddressApiTest.php
-
-# Або через PHPUnit
+# Запуск окремого тесту через PHPUnit
 vendor/bin/phpunit tests/Unit/Api/AddressApiTest.php
 ```
 
 ## Структура тестів
 
-Проект використовує Pest (обгортка PHPUnit) для тестування. Тести організовані за структурою:
+Проект використовує PHPUnit для тестування. Тести організовані за структурою:
 
 ```
 tests/
@@ -63,11 +58,14 @@ tests/
             <directory>./tests/Unit</directory>
         </testsuite>
     </testsuites>
-    <source>
-        <include>
+    <filter>
+        <whitelist>
             <directory>./app</directory>
-        </include>
-    </source>
+        </whitelist>
+    </filter>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+    </php>
 </phpunit>
 ```
 

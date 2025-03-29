@@ -2,12 +2,12 @@
 
 PHP SDK для інтеграції з API Нової Пошти
 
-[![PHP Version](https://img.shields.io/badge/php-%3E%3D8.0-blue.svg)](https://www.php.net/)
+[![PHP Version](https://img.shields.io/badge/php-%3E%3D7.4-blue.svg)](https://www.php.net/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ## Вимоги
 
-- PHP 8.0 або вище
+- PHP 7.4 або вище
 - Composer
 
 ## Встановлення
@@ -43,6 +43,11 @@ $warehouses = $sdk->address()->getWarehouses(
 // Відстеження посилки
 $trackingInfo = $sdk->tracking()->getStatusDocuments('59000000000000');
 ```
+
+## Документація API Нової Пошти
+
+Цей SDK базується на офіційному API Нової Пошти. Детальну документацію по API можна знайти за посиланням:
+[Документація API Нової Пошти](https://developers.novaposhta.ua/documentation)
 
 ## Структура SDK
 
@@ -255,10 +260,7 @@ $cities = $response->getData();
 SDK має повний набір тестів для перевірки функціональності. Для запуску тестів використовуйте:
 
 ```bash
-# Запуск через Pest (рекомендовано)
-vendor/bin/pest
-
-# Або через PHPUnit
+# Запуск тестів через PHPUnit
 vendor/bin/phpunit
 ```
 
