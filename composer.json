@@ -8,17 +8,16 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Andrii Hunhurian",
-            "email": "andrii.hunhurian@gmail.com"
+            "name": "AUnhurian"
         }
     ],
     "require": {
-        "php": "^8.0",
-        "guzzlehttp/guzzle": "^7.0"
+        "php": "^7.4",
+        "guzzlehttp/guzzle": "^7.9.3"
     },
     "require-dev": {
         "mockery/mockery": "^1.6.12",
-        "pestphp/pest": "^3.7.1",
+        "phpunit/phpunit": "^9.6.22",
         "phpstan/phpstan": "^1.10",
         "friendsofphp/php-cs-fixer": "^3.14"
     },
@@ -41,7 +40,7 @@
         }
     },
     "scripts": {
-        "test": "pest",
+        "test": "php vendor/bin/phpunit",
         "phpstan": "phpstan analyse",
         "cs-check": "php-cs-fixer check --verbose",
         "cs-fix": "php-cs-fixer fix --verbose"
