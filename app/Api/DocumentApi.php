@@ -14,7 +14,7 @@ class DocumentApi extends BaseApi
 
     /**
      * Create a new shipping document (TTN)
-     * 
+     *
      * @param array $params Shipment parameters
      * @return array
      */
@@ -25,7 +25,7 @@ class DocumentApi extends BaseApi
 
     /**
      * Delete a shipping document (TTN)
-     * 
+     *
      * @param string $documentRef Document reference ID
      * @return array
      */
@@ -38,7 +38,7 @@ class DocumentApi extends BaseApi
 
     /**
      * Get the estimated shipping cost
-     * 
+     *
      * @param string $citySender City sender reference ID
      * @param string $cityRecipient City recipient reference ID
      * @param string $weight Weight in kg
@@ -103,7 +103,7 @@ class DocumentApi extends BaseApi
 
     /**
      * Calculate delivery date
-     * 
+     *
      * @param string $citySender City sender reference ID
      * @param string $cityRecipient City recipient reference ID
      * @param string $serviceType Service type (e.g., 'WarehouseWarehouse')
@@ -131,7 +131,7 @@ class DocumentApi extends BaseApi
 
     /**
      * Get list of shipments (TTNs)
-     * 
+     *
      * @param string|null $dateTimeFrom Start date (format: dd.mm.yyyy)
      * @param string|null $dateTimeTo End date (format: dd.mm.yyyy)
      * @param string|null $page Page number
@@ -167,7 +167,7 @@ class DocumentApi extends BaseApi
 
     /**
      * Get shipment (TTN) by reference ID
-     * 
+     *
      * @param string $ref Shipment reference ID
      * @return array
      */
@@ -180,7 +180,7 @@ class DocumentApi extends BaseApi
 
     /**
      * Generate an electronic waybill (e-TTN)
-     * 
+     *
      * @param string $ref Shipment reference ID
      * @param string|null $type Type of the document (html, pdf, pdf_a4, pdf_a5, json)
      * @return array

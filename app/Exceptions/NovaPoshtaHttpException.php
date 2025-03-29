@@ -11,7 +11,7 @@ class NovaPoshtaHttpException extends Exception
 {
     /**
      * Create a new NovaPoshtaHttpException instance
-     * 
+     *
      * @param string $message Error message
      * @param int $code HTTP status code
      * @param \Throwable|null $previous Previous exception

@@ -25,7 +25,7 @@ class NovaPoshtaHttpClient
 
     /**
      * Create a new NovaPoshtaHttpClient instance
-     * 
+     *
      * @param NovaPoshtaConfig $config
      */
     public function __construct(NovaPoshtaConfig $config)
@@ -40,7 +40,7 @@ class NovaPoshtaHttpClient
 
     /**
      * Send a request to Nova Poshta API
-     * 
+     *
      * @param string $modelName Model name
      * @param string $calledMethod Method name
      * @param array $methodProperties Method properties
@@ -73,6 +73,7 @@ class NovaPoshtaHttpClient
             }
 
             $novaPoshtaResponse = new NovaPoshtaResponse($data, $statusCode);
+
             return $novaPoshtaResponse->getData();
         } catch (GuzzleException $e) {
             throw new NovaPoshtaHttpException(
@@ -82,10 +83,10 @@ class NovaPoshtaHttpClient
             );
         }
     }
-    
+
     /**
      * Send a request to Nova Poshta API and get full response object
-     * 
+     *
      * @param string $modelName Model name
      * @param string $calledMethod Method name
      * @param array $methodProperties Method properties

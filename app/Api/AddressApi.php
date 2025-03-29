@@ -14,7 +14,7 @@ class AddressApi extends BaseApi
 
     /**
      * Search for settlements (cities, villages)
-     * 
+     *
      * @param string $search Search query
      * @param int $page Page number (default: 1)
      * @param int $limit Items per page (default: 20)
@@ -31,7 +31,7 @@ class AddressApi extends BaseApi
 
     /**
      * Search for streets in a settlement
-     * 
+     *
      * @param string $settlementRef Settlement reference ID
      * @param string $search Search query
      * @param int $page Page number (default: 1)
@@ -50,7 +50,7 @@ class AddressApi extends BaseApi
 
     /**
      * Get a list of regions (oblasts)
-     * 
+     *
      * @return array
      */
     public function getAreas(): array
@@ -60,7 +60,7 @@ class AddressApi extends BaseApi
 
     /**
      * Get a list of cities
-     * 
+     *
      * @param string|null $ref City reference ID
      * @param string|null $findByString Search query
      * @param int|null $page Page number
@@ -92,7 +92,7 @@ class AddressApi extends BaseApi
 
     /**
      * Get a list of warehouses (departments)
-     * 
+     *
      * @param string|null $cityRef City reference ID
      * @param string|null $findByString Search query
      * @param int|null $page Page number
@@ -101,9 +101,9 @@ class AddressApi extends BaseApi
      * @return array
      */
     public function getWarehouses(
-        ?string $cityRef = null, 
-        ?string $findByString = null, 
-        ?int $page = null, 
+        ?string $cityRef = null,
+        ?string $findByString = null,
+        ?int $page = null,
         ?int $limit = null,
         ?string $typeOfWarehouseRef = null
     ): array {
@@ -134,7 +134,7 @@ class AddressApi extends BaseApi
 
     /**
      * Get a list of warehouse types
-     * 
+     *
      * @return array
      */
     public function getWarehouseTypes(): array
@@ -144,7 +144,7 @@ class AddressApi extends BaseApi
 
     /**
      * Get a list of streets in a city
-     * 
+     *
      * @param string $cityRef City reference ID
      * @param string|null $findByString Search query
      * @param int|null $page Page number
@@ -152,9 +152,9 @@ class AddressApi extends BaseApi
      * @return array
      */
     public function getStreet(
-        string $cityRef, 
-        ?string $findByString = null, 
-        ?int $page = null, 
+        string $cityRef,
+        ?string $findByString = null,
+        ?int $page = null,
         ?int $limit = null
     ): array {
         $params = [
@@ -178,7 +178,7 @@ class AddressApi extends BaseApi
 
     /**
      * Create a new address (counterparty address)
-     * 
+     *
      * @param string $counterpartyRef Counterparty reference ID
      * @param string $streetRef Street reference ID
      * @param string $buildingNumber Building number
@@ -187,10 +187,10 @@ class AddressApi extends BaseApi
      * @return array
      */
     public function save(
-        string $counterpartyRef, 
-        string $streetRef, 
-        string $buildingNumber, 
-        ?string $flat = null, 
+        string $counterpartyRef,
+        string $streetRef,
+        string $buildingNumber,
+        ?string $flat = null,
         ?string $note = null
     ): array {
         $params = [
@@ -212,7 +212,7 @@ class AddressApi extends BaseApi
 
     /**
      * Delete an address
-     * 
+     *
      * @param string $ref Address reference ID
      * @return array
      */

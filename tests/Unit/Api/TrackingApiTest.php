@@ -175,4 +175,4 @@ class TrackingApiTest extends TestCase
 
         $this->assertEquals($mockResponse, $result);
     }
-} 
+}

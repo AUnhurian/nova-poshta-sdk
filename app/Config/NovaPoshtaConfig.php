@@ -9,21 +9,21 @@ class NovaPoshtaConfig
 {
     /**
      * API key for Nova Poshta API
-     * 
+     *
      * @var string
      */
     private string $apiKey;
 
     /**
      * API base URL
-     * 
+     *
      * @var string
      */
     private string $apiUrl = 'https://api.novaposhta.ua/v2.0/json/';
 
     /**
      * Create a new NovaPoshtaConfig instance
-     * 
+     *
      * @param string $apiKey API key from Nova Poshta
      */
     public function __construct(string $apiKey)
@@ -33,7 +33,7 @@ class NovaPoshtaConfig
 
     /**
      * Get the API key
-     * 
+     *
      * @return string
      */
     public function getApiKey(): string
@@ -43,7 +43,7 @@ class NovaPoshtaConfig
 
     /**
      * Get the API URL
-     * 
+     *
      * @return string
      */
     public function getApiUrl(): string
@@ -53,13 +53,14 @@ class NovaPoshtaConfig
 
     /**
      * Set the API key
-     * 
+     *
      * @param string $apiKey
      * @return self
      */
     public function setApiKey(string $apiKey): self
     {
         $this->apiKey = $apiKey;
+
         return $this;
     }
 }

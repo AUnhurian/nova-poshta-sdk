@@ -8,6 +8,8 @@ use NovaPoshta\SDK\Api\CounterpartyApi;
 use NovaPoshta\SDK\Api\DocumentApi;
 use NovaPoshta\SDK\Api\TrackingApi;
 use NovaPoshta\SDK\Config\NovaPoshtaConfig;
+use NovaPoshta\SDK\Exceptions\NovaPoshtaApiException;
+use NovaPoshta\SDK\Exceptions\NovaPoshtaHttpException;
 use NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
 use NovaPoshta\SDK\Http\NovaPoshtaResponse;
 
@@ -136,6 +138,8 @@ class NovaPoshtaSDK
      * @param string $calledMethod API method name
      * @param array $methodProperties Method properties
      * @return array Response data
+     * @throws NovaPoshtaApiException
+     * @throws NovaPoshtaHttpException
      */
     public function request(string $modelName, string $calledMethod, array $methodProperties = []): array
     {
@@ -149,6 +153,8 @@ class NovaPoshtaSDK
      * @param string $calledMethod API method name
      * @param array $methodProperties Method properties
      * @return NovaPoshtaResponse Full response object
+     * @throws NovaPoshtaApiException
+     * @throws NovaPoshtaHttpException
      */
     public function requestWithFullResponse(string $modelName, string $calledMethod, array $methodProperties = []): NovaPoshtaResponse
     {

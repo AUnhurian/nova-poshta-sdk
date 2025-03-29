@@ -14,7 +14,7 @@ class CounterpartyApi extends BaseApi
 
     /**
      * Create a new counterparty (customer, organization)
-     * 
+     *
      * @param string $counterpartyType Type of counterparty ('PrivatePerson' or 'Organization')
      * @param string $firstName First name (for PrivatePerson)
      * @param string $lastName Last name (for PrivatePerson)
@@ -26,11 +26,11 @@ class CounterpartyApi extends BaseApi
      * @return array
      */
     public function save(
-        string $counterpartyType, 
-        ?string $firstName = null, 
-        ?string $lastName = null, 
-        ?string $middleName = null, 
-        ?string $phone = null, 
+        string $counterpartyType,
+        ?string $firstName = null,
+        ?string $lastName = null,
+        ?string $middleName = null,
+        ?string $phone = null,
         ?string $email = null,
         ?string $companyName = null,
         ?string $edrpou = null
@@ -44,11 +44,11 @@ class CounterpartyApi extends BaseApi
             $params['FirstName'] = $firstName;
             $params['LastName'] = $lastName;
             $params['MiddleName'] = $middleName;
-            
+
             if ($phone !== null) {
                 $params['Phone'] = $phone;
             }
-            
+
             if ($email !== null) {
                 $params['Email'] = $email;
             }
@@ -62,7 +62,7 @@ class CounterpartyApi extends BaseApi
 
     /**
      * Update a counterparty (customer, organization)
-     * 
+     *
      * @param string $ref Counterparty reference ID
      * @param string $counterpartyType Type of counterparty ('PrivatePerson' or 'Organization')
      * @param string|null $firstName First name (for PrivatePerson)
@@ -76,11 +76,11 @@ class CounterpartyApi extends BaseApi
      */
     public function update(
         string $ref,
-        string $counterpartyType, 
-        ?string $firstName = null, 
-        ?string $lastName = null, 
-        ?string $middleName = null, 
-        ?string $phone = null, 
+        string $counterpartyType,
+        ?string $firstName = null,
+        ?string $lastName = null,
+        ?string $middleName = null,
+        ?string $phone = null,
         ?string $email = null,
         ?string $companyName = null,
         ?string $edrpou = null
@@ -95,19 +95,19 @@ class CounterpartyApi extends BaseApi
             if ($firstName !== null) {
                 $params['FirstName'] = $firstName;
             }
-            
+
             if ($lastName !== null) {
                 $params['LastName'] = $lastName;
             }
-            
+
             if ($middleName !== null) {
                 $params['MiddleName'] = $middleName;
             }
-            
+
             if ($phone !== null) {
                 $params['Phone'] = $phone;
             }
-            
+
             if ($email !== null) {
                 $params['Email'] = $email;
             }
@@ -115,7 +115,7 @@ class CounterpartyApi extends BaseApi
             if ($companyName !== null) {
                 $params['CompanyName'] = $companyName;
             }
-            
+
             if ($edrpou !== null) {
                 $params['EDRPOU'] = $edrpou;
             }
@@ -126,7 +126,7 @@ class CounterpartyApi extends BaseApi
 
     /**
      * Delete a counterparty
-     * 
+     *
      * @param string $ref Counterparty reference ID
      * @return array
      */
@@ -139,7 +139,7 @@ class CounterpartyApi extends BaseApi
 
     /**
      * Get counterparty addresses
-     * 
+     *
      * @param string $ref Counterparty reference ID
      * @param string $counterpartyProperty Counterparty property ('Sender' or 'Recipient')
      * @return array
@@ -154,7 +154,7 @@ class CounterpartyApi extends BaseApi
 
     /**
      * Get counterparty contact persons
-     * 
+     *
      * @param string $ref Counterparty reference ID
      * @param string $counterpartyProperty Counterparty property ('Sender' or 'Recipient')
      * @return array
@@ -169,7 +169,7 @@ class CounterpartyApi extends BaseApi
 
     /**
      * Get counterparty options
-     * 
+     *
      * @param string $ref Counterparty reference ID
      * @return array
      */
@@ -182,7 +182,7 @@ class CounterpartyApi extends BaseApi
 
     /**
      * Search for counterparties
-     * 
+     *
      * @param string $findByString Search query
      * @param string $counterpartyProperty Counterparty property ('Sender' or 'Recipient')
      * @param int|null $page Page number
@@ -190,7 +190,7 @@ class CounterpartyApi extends BaseApi
      * @return array
      */
     public function getCounterparties(
-        string $findByString, 
+        string $findByString,
         string $counterpartyProperty = 'Recipient',
         ?int $page = null,
         ?int $limit = null

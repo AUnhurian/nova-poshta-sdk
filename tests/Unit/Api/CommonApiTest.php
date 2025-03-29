@@ -185,4 +185,4 @@ class CommonApiTest extends TestCase
 
         $this->assertEquals($mockResponse, $result);
     }
-} 
+}

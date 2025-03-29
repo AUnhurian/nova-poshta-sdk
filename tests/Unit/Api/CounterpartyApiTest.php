@@ -260,4 +260,4 @@ class CounterpartyApiTest extends TestCase
 
         $this->assertEquals($mockResponse, $result);
     }
-} 
+}

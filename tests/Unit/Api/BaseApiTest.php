@@ -17,16 +17,16 @@ class BaseApiTest extends TestCase
     {
         parent::setUp();
         $this->httpClientMock = Mockery::mock(NovaPoshtaHttpClient::class);
-        
+
         // Створюємо конкретний екземпляр абстрактного класу через анонімний клас
-        $this->baseApi = new class($this->httpClientMock) extends BaseApi {
+        $this->baseApi = new class ($this->httpClientMock) extends BaseApi {
             protected string $modelName = 'TestModel';
-            
+
             public function callRequest(string $method, array $properties = []): array
             {
                 return $this->request($method, $properties);
             }
-            
+
             public function callRequestWithFullResponse(string $method, array $properties = []): NovaPoshtaResponse
             {
                 return $this->requestWithFullResponse($method, $properties);
@@ -77,4 +77,4 @@ class BaseApiTest extends TestCase
 
         $this->assertSame($mockResponse, $result);
     }
-} 
+}

@@ -47,7 +47,7 @@ class NovaPoshtaResponse
 
     /**
      * Create a new NovaPoshtaResponse instance
-     * 
+     *
      * @param array $responseData Raw response data
      * @param int $statusCode HTTP status code
      * @throws NovaPoshtaHttpException|NovaPoshtaApiException
@@ -67,7 +67,7 @@ class NovaPoshtaResponse
 
     /**
      * Validate the response
-     * 
+     *
      * @throws NovaPoshtaHttpException|NovaPoshtaApiException
      */
     private function validate(): void
@@ -79,7 +79,7 @@ class NovaPoshtaResponse
             );
         }
 
-        if (!empty($this->errors)) {
+        if (! empty($this->errors)) {
             throw new NovaPoshtaApiException(
                 'Nova Poshta API returned errors: ' . implode(', ', $this->errors),
                 $this->errors
@@ -88,6 +88,7 @@ class NovaPoshtaResponse
 
         if ($this->success === false) {
             $errorMessage = $this->errors ?: ['Unknown API error'];
+
             throw new NovaPoshtaApiException(
                 'Nova Poshta API request failed: ' . implode(', ', $errorMessage),
                 $this->errors
@@ -97,7 +98,7 @@ class NovaPoshtaResponse
 
     /**
      * Check if the response is successful
-     * 
+     *
      * @return bool
      */
     public function isSuccess(): bool
@@ -107,7 +108,7 @@ class NovaPoshtaResponse
 
     /**
      * Get the response data
-     * 
+     *
      * @return array
      */
     public function getData(): array
@@ -117,7 +118,7 @@ class NovaPoshtaResponse
 
     /**
      * Get the response errors
-     * 
+     *
      * @return array
      */
     public function getErrors(): array
@@ -127,7 +128,7 @@ class NovaPoshtaResponse
 
     /**
      * Get the response warnings
-     * 
+     *
      * @return array
      */
     public function getWarnings(): array
@@ -137,7 +138,7 @@ class NovaPoshtaResponse
 
     /**
      * Get the response info
-     * 
+     *
      * @return array
      */
     public function getInfo(): array
@@ -147,7 +148,7 @@ class NovaPoshtaResponse
 
     /**
      * Get the raw response data
-     * 
+     *
      * @return array
      */
     public function getRawData(): array
@@ -157,11 +158,11 @@ class NovaPoshtaResponse
 
     /**
      * Get the HTTP status code
-     * 
+     *
      * @return int
      */
     public function getStatusCode(): int
     {
         return $this->statusCode;
     }
-} 
+}

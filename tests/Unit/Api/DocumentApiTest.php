@@ -310,4 +310,4 @@ class DocumentApiTest extends TestCase
 
         $this->assertEquals($mockResponse, $result);
     }
-} 
+}

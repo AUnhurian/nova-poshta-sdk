@@ -22,7 +22,7 @@ abstract class BaseApi
 
     /**
      * Create a new BaseApi instance
-     * 
+     *
      * @param NovaPoshtaHttpClient $httpClient
      */
     public function __construct(NovaPoshtaHttpClient $httpClient)
@@ -32,7 +32,7 @@ abstract class BaseApi
 
     /**
      * Send a request to Nova Poshta API
-     * 
+     *
      * @param string $method Method name
      * @param array $properties Method properties
      * @return array Response data
@@ -41,10 +41,10 @@ abstract class BaseApi
     {
         return $this->httpClient->request($this->modelName, $method, $properties);
     }
-    
+
     /**
      * Send a request to Nova Poshta API and get full response object
-     * 
+     *
      * @param string $method Method name
      * @param array $properties Method properties
      * @return NovaPoshtaResponse Full response object

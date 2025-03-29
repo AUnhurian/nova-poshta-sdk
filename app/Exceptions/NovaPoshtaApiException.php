@@ -16,7 +16,7 @@ class NovaPoshtaApiException extends Exception
 
     /**
      * Create a new NovaPoshtaApiException instance
-     * 
+     *
      * @param string $message Error message
      * @param array $errors List of errors from Nova Poshta API
      * @param int $code Error code
@@ -30,7 +30,7 @@ class NovaPoshtaApiException extends Exception
 
     /**
      * Get the list of errors from Nova Poshta API
-     * 
+     *
      * @return array
      */
     public function getErrors(): array

@@ -14,7 +14,7 @@ class CommonApi extends BaseApi
 
     /**
      * Get list of cargo types
-     * 
+     *
      * @return array
      */
     public function getCargoTypes(): array
@@ -24,7 +24,7 @@ class CommonApi extends BaseApi
 
     /**
      * Get list of cargo description
-     * 
+     *
      * @param string|null $findByString Search query
      * @param int|null $page Page number
      * @param int|null $limit Items per page
@@ -51,7 +51,7 @@ class CommonApi extends BaseApi
 
     /**
      * Get messaging codes for the first order attempt
-     * 
+     *
      * @return array
      */
     public function getMessageCodeText(): array
@@ -61,7 +61,7 @@ class CommonApi extends BaseApi
 
     /**
      * Get list of service types (delivery types)
-     * 
+     *
      * @return array
      */
     public function getServiceTypes(): array
@@ -71,7 +71,7 @@ class CommonApi extends BaseApi
 
     /**
      * Get list of pallet types
-     * 
+     *
      * @return array
      */
     public function getPalletsList(): array
@@ -81,7 +81,7 @@ class CommonApi extends BaseApi
 
     /**
      * Get list of types of payers
-     * 
+     *
      * @return array
      */
     public function getTypesOfPayers(): array
@@ -91,7 +91,7 @@ class CommonApi extends BaseApi
 
     /**
      * Get list of types of payment
-     * 
+     *
      * @return array
      */
     public function getTypesOfPayment(): array
@@ -101,7 +101,7 @@ class CommonApi extends BaseApi
 
     /**
      * Get list of payment forms
-     * 
+     *
      * @return array
      */
     public function getPaymentForms(): array
@@ -111,7 +111,7 @@ class CommonApi extends BaseApi
 
     /**
      * Get list of time intervals
-     * 
+     *
      * @param string|null $recipientCityRef Recipient city reference ID
      * @param string|null $dateTime Date (format: dd.mm.yyyy)
      * @return array
@@ -133,7 +133,7 @@ class CommonApi extends BaseApi
 
     /**
      * Get list of package types
-     * 
+     *
      * @param string|null $lengthString Length in cm
      * @param string|null $widthString Width in cm
      * @param string|null $heightString Height in cm
@@ -160,7 +160,7 @@ class CommonApi extends BaseApi
 
     /**
      * Get list of tires and wheels
-     * 
+     *
      * @return array
      */
     public function getTiresWheelsList(): array
@@ -170,7 +170,7 @@ class CommonApi extends BaseApi
 
     /**
      * Get list of backward delivery cargo types
-     * 
+     *
      * @return array
      */
     public function getBackwardDeliveryCargoTypes(): array
@@ -180,7 +180,7 @@ class CommonApi extends BaseApi
 
     /**
      * Get list of ownership forms
-     * 
+     *
      * @return array
      */
     public function getOwnershipFormsList(): array

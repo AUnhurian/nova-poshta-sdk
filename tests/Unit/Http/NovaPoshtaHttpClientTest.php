@@ -6,13 +6,12 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use Mockery;
 use NovaPoshta\SDK\Config\NovaPoshtaConfig;
 use NovaPoshta\SDK\Exceptions\NovaPoshtaApiException;
 use NovaPoshta\SDK\Exceptions\NovaPoshtaHttpException;
 use NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
-use Tests\TestCase;
 use ReflectionClass;
+use Tests\TestCase;
 
 class NovaPoshtaHttpClientTest extends TestCase
 {
@@ -47,13 +46,13 @@ class NovaPoshtaHttpClientTest extends TestCase
             'warnings' => [],
             'info' => [],
         ];
-        
+
         $successResponse = new Response(200, [], json_encode($responseData));
 
         $this->mockHttpClient($this->httpClient, $successResponse);
-        
+
         $result = $this->httpClient->request('TestModel', 'TestMethod', ['param' => 'value']);
-        
+
         $this->assertEquals($responseData['data'], $result);
     }
 
@@ -68,7 +67,7 @@ class NovaPoshtaHttpClientTest extends TestCase
         ]));
 
         $this->mockHttpClient($this->httpClient, $errorResponse);
-        
+
         $this->expectException(NovaPoshtaApiException::class);
         $this->httpClient->request('TestModel', 'TestMethod', ['param' => 'value']);
     }
@@ -78,7 +77,7 @@ class NovaPoshtaHttpClientTest extends TestCase
         $httpErrorResponse = new Response(500, [], 'Internal Server Error');
 
         $this->mockHttpClient($this->httpClient, $httpErrorResponse);
-        
+
         $this->expectException(NovaPoshtaHttpException::class);
         $this->httpClient->request('TestModel', 'TestMethod', ['param' => 'value']);
     }
@@ -88,7 +87,7 @@ class NovaPoshtaHttpClientTest extends TestCase
         $invalidJsonResponse = new Response(200, [], '{invalid_json:');
 
         $this->mockHttpClient($this->httpClient, $invalidJsonResponse);
-        
+
         $this->expectException(NovaPoshtaHttpException::class);
         $this->httpClient->request('TestModel', 'TestMethod', ['param' => 'value']);
     }
