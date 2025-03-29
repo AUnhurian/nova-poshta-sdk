@@ -1,6 +1,12 @@
 * text=auto eol=lf
+
+# Ignore for export
 /.github export-ignore
-.scrutinizer.yml export-ignore
-BACKERS.md export-ignore
-CONTRIBUTING.md export-ignore
-CHANGELOG.md export-ignore
+/tests export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/.php-cs-fixer.dist.php export-ignore
+/phpstan.neon export-ignore
+/phpunit.xml export-ignore
+/TESTING.md export-ignore
+
