@@ -1,6 +1,6 @@
 <?php
 
-namespace NovaPoshta\SDK\Api;
+namespace AUnhurian\NovaPoshta\SDK\Api;
 
 /**
  * Tracking API module for Nova Poshta API

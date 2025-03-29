@@ -1,9 +1,9 @@
 <?php
 
-namespace NovaPoshta\SDK\Api;
+namespace AUnhurian\NovaPoshta\SDK\Api;
 
-use NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
-use NovaPoshta\SDK\Http\NovaPoshtaResponse;
+use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
+use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaResponse;
 
 /**
  * Base API class for all Nova Poshta API modules

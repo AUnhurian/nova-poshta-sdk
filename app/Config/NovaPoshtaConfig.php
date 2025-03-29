@@ -1,6 +1,6 @@
 <?php
 
-namespace NovaPoshta\SDK\Config;
+namespace AUnhurian\NovaPoshta\SDK\Config;
 
 /**
  * Configuration class for Nova Poshta API

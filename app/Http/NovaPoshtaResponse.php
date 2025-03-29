@@ -1,9 +1,9 @@
 <?php
 
-namespace NovaPoshta\SDK\Http;
+namespace AUnhurian\NovaPoshta\SDK\Http;
 
-use NovaPoshta\SDK\Exceptions\NovaPoshtaApiException;
-use NovaPoshta\SDK\Exceptions\NovaPoshtaHttpException;
+use AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaApiException;
+use AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaHttpException;
 
 /**
  * Response class for Nova Poshta API

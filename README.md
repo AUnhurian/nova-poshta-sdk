@@ -1,6 +1,6 @@
 # Nova Poshta SDK для PHP
 
-PHP SDK для інтеграції з API Нової Пошти, розроблений на фреймворку Laravel Zero.
+PHP SDK для інтеграції з API Нової Пошти
 
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D8.0-blue.svg)](https://www.php.net/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -13,13 +13,13 @@ PHP SDK для інтеграції з API Нової Пошти, розробл
 ## Встановлення
 
 ```bash
-composer require novaposhta/sdk
+composer require aunhurian/nova-poshta-sdk
 ```
 
 Або клонуйте репозиторій:
 
 ```bash
-git clone https://github.com/novaposhta/sdk.git
+git clone https://github.com/aunhurian/nova-poshta-sdk.git
 cd nova-poshta-sdk
 composer install
 ```
@@ -29,7 +29,7 @@ composer install
 ```php
 // Створення екземпляру SDK
 $apiKey = 'ваш_api_ключ';
-$sdk = new \NovaPoshta\SDK\NovaPoshtaSDK($apiKey);
+$sdk = new \AUnhurian\NovaPoshta\SDK\NovaPoshtaSDK($apiKey);
 
 // Отримання списку міст
 $cities = $sdk->address()->getCities(findByString: 'Київ');
@@ -276,10 +276,10 @@ SDK використовує систему виключень для оброб
 ```php
 try {
     $result = $sdk->address()->getAreas();
-} catch (NovaPoshtaApiException $e) {
+} catch (AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaApiException $e) {
     // Помилка API Нової Пошти
     echo "API помилка: " . $e->getMessage();
-} catch (NovaPoshtaHttpException $e) {
+} catch (AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaHttpException $e) {
     // HTTP помилка (мережева помилка)
     echo "HTTP помилка: " . $e->getMessage();
 } catch (Exception $e) {

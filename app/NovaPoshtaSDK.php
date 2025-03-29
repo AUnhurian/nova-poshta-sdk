@@ -1,17 +1,17 @@
 <?php
 
-namespace NovaPoshta\SDK;
+namespace AUnhurian\NovaPoshta\SDK;
 
-use NovaPoshta\SDK\Api\AddressApi;
-use NovaPoshta\SDK\Api\CommonApi;
-use NovaPoshta\SDK\Api\CounterpartyApi;
-use NovaPoshta\SDK\Api\DocumentApi;
-use NovaPoshta\SDK\Api\TrackingApi;
-use NovaPoshta\SDK\Config\NovaPoshtaConfig;
-use NovaPoshta\SDK\Exceptions\NovaPoshtaApiException;
-use NovaPoshta\SDK\Exceptions\NovaPoshtaHttpException;
-use NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
-use NovaPoshta\SDK\Http\NovaPoshtaResponse;
+use AUnhurian\NovaPoshta\SDK\Api\AddressApi;
+use AUnhurian\NovaPoshta\SDK\Api\CommonApi;
+use AUnhurian\NovaPoshta\SDK\Api\CounterpartyApi;
+use AUnhurian\NovaPoshta\SDK\Api\DocumentApi;
+use AUnhurian\NovaPoshta\SDK\Api\TrackingApi;
+use AUnhurian\NovaPoshta\SDK\Config\NovaPoshtaConfig;
+use AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaApiException;
+use AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaHttpException;
+use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
+use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaResponse;
 
 /**
  * Main SDK class for Nova Poshta API integration

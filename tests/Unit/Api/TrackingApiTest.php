@@ -3,8 +3,8 @@
 namespace Tests\Unit\Api;
 
 use Mockery;
-use NovaPoshta\SDK\Api\TrackingApi;
-use NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
+use AUnhurian\NovaPoshta\SDK\Api\TrackingApi;
+use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
 use Tests\TestCase;
 
 class TrackingApiTest extends TestCase

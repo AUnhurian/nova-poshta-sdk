@@ -1,14 +1,15 @@
 {
-    "name": "novaposhta/sdk",
+    "name": "aunhurian/nova-poshta-sdk",
     "description": "Сучасний PHP SDK для інтеграції з API Нової Пошти",
     "keywords": ["nova poshta", "sdk", "api", "новапошта", "нова пошта", "api клієнт"],
-    "homepage": "https://github.com/novaposhta/sdk",
+    "homepage": "https://github.com/aunhurian/nova-poshta-sdk",
     "version": "1.0.0",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "AUnhurian"
+            "name": "Andrii Hunhurian",
+            "email": "andrii.hunhurian@gmail.com"
         }
     ],
     "require": {
@@ -23,7 +24,7 @@
     },
     "autoload": {
         "psr-4": {
-            "NovaPoshta\\SDK\\": "app/"
+            "AUnhurian\\NovaPoshta\\SDK\\": "app/"
         }
     },
     "autoload-dev": {

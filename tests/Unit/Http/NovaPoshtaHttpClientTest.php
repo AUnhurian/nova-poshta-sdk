@@ -6,10 +6,10 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use NovaPoshta\SDK\Config\NovaPoshtaConfig;
-use NovaPoshta\SDK\Exceptions\NovaPoshtaApiException;
-use NovaPoshta\SDK\Exceptions\NovaPoshtaHttpException;
-use NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
+use AUnhurian\NovaPoshta\SDK\Config\NovaPoshtaConfig;
+use AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaApiException;
+use AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaHttpException;
+use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
 use ReflectionClass;
 use Tests\TestCase;
 

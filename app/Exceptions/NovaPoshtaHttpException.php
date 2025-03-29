@@ -1,6 +1,6 @@
 <?php
 
-namespace NovaPoshta\SDK\Exceptions;
+namespace AUnhurian\NovaPoshta\SDK\Exceptions;
 
 use Exception;
 

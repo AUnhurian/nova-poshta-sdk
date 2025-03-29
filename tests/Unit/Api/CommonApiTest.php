@@ -3,8 +3,8 @@
 namespace Tests\Unit\Api;
 
 use Mockery;
-use NovaPoshta\SDK\Api\CommonApi;
-use NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
+use AUnhurian\NovaPoshta\SDK\Api\CommonApi;
+use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
 use Tests\TestCase;
 
 class CommonApiTest extends TestCase

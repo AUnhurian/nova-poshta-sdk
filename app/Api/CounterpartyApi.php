@@ -1,6 +1,6 @@
 <?php
 
-namespace NovaPoshta\SDK\Api;
+namespace AUnhurian\NovaPoshta\SDK\Api;
 
 /**
  * Counterparty API module for Nova Poshta API

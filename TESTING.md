@@ -73,12 +73,12 @@ tests/
 
 ## Автозавантаження
 
-Проєкт використовує стандартний PSR-4 автозавантажувач Composer. Простір імен `NovaPoshta\SDK\` відповідає директорії `app/` згідно з налаштуваннями в `composer.json`:
+Проєкт використовує стандартний PSR-4 автозавантажувач Composer. Простір імен `AUnhurian\NovaPoshta\SDK\` відповідає директорії `app/` згідно з налаштуваннями в `composer.json`:
 
 ```json
 "autoload": {
     "psr-4": {
-        "NovaPoshta\\SDK\\": "app/"
+        "AUnhurian\\NovaPoshta\\SDK\\": "app/"
     }
 },
 "autoload-dev": {
@@ -105,8 +105,8 @@ tests/
 namespace Tests\Unit\Api;
 
 use Mockery;
-use NovaPoshta\SDK\Api\AddressApi;
-use NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
+use AUnhurian\NovaPoshta\SDK\Api\AddressApi;
+use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
 use Tests\TestCase;
 
 class AddressApiTest extends TestCase

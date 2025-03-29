@@ -3,9 +3,9 @@
 namespace Tests\Unit\Api;
 
 use Mockery;
-use NovaPoshta\SDK\Api\BaseApi;
-use NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
-use NovaPoshta\SDK\Http\NovaPoshtaResponse;
+use AUnhurian\NovaPoshta\SDK\Api\BaseApi;
+use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
+use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaResponse;
 use Tests\TestCase;
 
 class BaseApiTest extends TestCase

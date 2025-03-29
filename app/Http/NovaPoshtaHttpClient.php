@@ -1,12 +1,12 @@
 <?php
 
-namespace NovaPoshta\SDK\Http;
+namespace AUnhurian\NovaPoshta\SDK\Http;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use NovaPoshta\SDK\Config\NovaPoshtaConfig;
-use NovaPoshta\SDK\Exceptions\NovaPoshtaApiException;
-use NovaPoshta\SDK\Exceptions\NovaPoshtaHttpException;
+use AUnhurian\NovaPoshta\SDK\Config\NovaPoshtaConfig;
+use AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaApiException;
+use AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaHttpException;
 
 /**
  * HTTP client for Nova Poshta API
