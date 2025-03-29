@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AUnhurian\NovaPoshta\SDK\Http;
 
 use AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaApiException;
