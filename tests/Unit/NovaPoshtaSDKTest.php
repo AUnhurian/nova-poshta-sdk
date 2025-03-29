@@ -8,6 +8,7 @@ use AUnhurian\NovaPoshta\SDK\Api\CounterpartyApi;
 use AUnhurian\NovaPoshta\SDK\Api\DocumentApi;
 use AUnhurian\NovaPoshta\SDK\Api\TrackingApi;
 use AUnhurian\NovaPoshta\SDK\Config\NovaPoshtaConfig;
+use AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaApiException;
 use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
 use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaResponse;
 use AUnhurian\NovaPoshta\SDK\NovaPoshtaSDK;
@@ -93,5 +94,120 @@ class NovaPoshtaSDKTest extends TestCase
         $result = $sdk->requestWithFullResponse('Address', 'getAreas', []);
 
         $this->assertSame($mockResponse, $result);
+    }
+
+    /**
+     * @test
+     */
+    public function itCanUseMockResponses(): void
+    {
+        $sdk = new NovaPoshtaSDK('test_api_key');
+
+        // Налаштування фейкових відповідей
+        $mockResponses = [
+            'Address.getAreas' => [
+                'response' => [
+                    'success' => true,
+                    'data' => [
+                        [
+                            'Ref' => 'test-area-ref',
+                            'Description' => 'Test Area',
+                        ],
+                    ],
+                    'errors' => [],
+                    'warnings' => [],
+                    'info' => [],
+                ],
+                'statusCode' => 200,
+            ],
+            'Address.getCities' => [
+                'params' => [
+                    'FindByString' => 'Kyiv',
+                ],
+                'response' => [
+                    'success' => true,
+                    'data' => [
+                        [
+                            'Ref' => 'test-city-ref',
+                            'Description' => 'Kyiv',
+                        ],
+                    ],
+                    'errors' => [],
+                    'warnings' => [],
+                    'info' => [],
+                ],
+                'statusCode' => 200,
+            ],
+        ];
+
+        $sdk->setMockResponses($mockResponses);
+
+        // Перевірка getAreas
+        $areas = $sdk->request('Address', 'getAreas');
+        $this->assertIsArray($areas);
+        $this->assertCount(1, $areas);
+        $this->assertEquals('test-area-ref', $areas[0]['Ref']);
+        $this->assertEquals('Test Area', $areas[0]['Description']);
+
+        // Перевірка getCities з правильним параметром
+        $cities = $sdk->request('Address', 'getCities', ['FindByString' => 'Kyiv']);
+        $this->assertIsArray($cities);
+        $this->assertCount(1, $cities);
+        $this->assertEquals('test-city-ref', $cities[0]['Ref']);
+        $this->assertEquals('Kyiv', $cities[0]['Description']);
+
+        // Очищення фейкових відповідей
+        $sdk->clearMockResponses();
+    }
+
+    /**
+     * @test
+     */
+    public function itCanUseMockResponsesWithFullResponse(): void
+    {
+        $sdk = new NovaPoshtaSDK('test_api_key');
+
+        // Налаштування фейкових відповідей
+        $mockResponses = [
+            'Address.getAreas' => [
+                'response' => [
+                    'success' => true,
+                    'data' => [
+                        [
+                            'Ref' => 'test-area-ref',
+                            'Description' => 'Test Area',
+                        ],
+                    ],
+                    'errors' => [],
+                    'warnings' => [],
+                    'info' => [],
+                ],
+                'statusCode' => 200,
+            ],
+            'Address.getCities' => [
+                'response' => [
+                    'success' => false,
+                    'data' => [],
+                    'errors' => ['Test error message'],
+                    'warnings' => [],
+                    'info' => [],
+                ],
+                'statusCode' => 200, // Змінено на 200, щоб перевірити ApiException, а не HttpException
+            ],
+        ];
+
+        $sdk->setMockResponses($mockResponses);
+
+        // Перевірка getAreas
+        $response = $sdk->requestWithFullResponse('Address', 'getAreas');
+        $this->assertTrue($response->isSuccess());
+        $this->assertEquals(200, $response->getStatusCode());
+        $areas = $response->getData();
+        $this->assertCount(1, $areas);
+        $this->assertEquals('test-area-ref', $areas[0]['Ref']);
+
+        // Перевірка getCities (має викинути виключення)
+        $this->expectException(NovaPoshtaApiException::class);
+        $sdk->requestWithFullResponse('Address', 'getCities');
     }
 }

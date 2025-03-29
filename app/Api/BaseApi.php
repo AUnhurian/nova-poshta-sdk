@@ -8,6 +8,7 @@ use AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaApiException;
 use AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaHttpException;
 use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
 use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaResponse;
+use AUnhurian\NovaPoshta\SDK\NovaPoshtaSDK;
 
 /**
  * Base API module for Nova Poshta API
@@ -29,6 +30,13 @@ abstract class BaseApi
     protected string $modelName;
 
     /**
+     * Nova Poshta SDK instance
+     *
+     * @var NovaPoshtaSDK|null
+     */
+    protected ?NovaPoshtaSDK $sdk = null;
+
+    /**
      * Create a new BaseApi instance
      *
      * @param NovaPoshtaHttpClient $httpClient
@@ -36,6 +44,17 @@ abstract class BaseApi
     public function __construct(NovaPoshtaHttpClient $httpClient)
     {
         $this->httpClient = $httpClient;
+    }
+
+    /**
+     * Set the SDK instance
+     *
+     * @param NovaPoshtaSDK $sdk
+     * @return void
+     */
+    public function setSdk(NovaPoshtaSDK $sdk): void
+    {
+        $this->sdk = $sdk;
     }
 
     /**
@@ -49,6 +68,10 @@ abstract class BaseApi
      */
     protected function request(string $calledMethod, array $methodProperties = []): array
     {
+        if ($this->sdk !== null) {
+            return $this->sdk->request($this->modelName, $calledMethod, $methodProperties);
+        }
+
         return $this->httpClient->request($this->modelName, $calledMethod, $methodProperties);
     }
 
@@ -63,6 +86,10 @@ abstract class BaseApi
      */
     protected function requestWithFullResponse(string $calledMethod, array $methodProperties = []): NovaPoshtaResponse
     {
+        if ($this->sdk !== null) {
+            return $this->sdk->requestWithFullResponse($this->modelName, $calledMethod, $methodProperties);
+        }
+
         return $this->httpClient->requestWithFullResponse($this->modelName, $calledMethod, $methodProperties);
     }
 }

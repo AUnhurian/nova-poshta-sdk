@@ -56,6 +56,11 @@ class NovaPoshtaSDK
     private CommonApi $commonApi;
 
     /**
+     * @var array|null
+     */
+    private ?array $mockResponses = null;
+
+    /**
      * Create a new NovaPoshtaSDK instance
      *
      * @param string $apiKey API key from Nova Poshta
@@ -71,6 +76,12 @@ class NovaPoshtaSDK
         $this->documentApi = new DocumentApi($this->httpClient);
         $this->trackingApi = new TrackingApi($this->httpClient);
         $this->commonApi = new CommonApi($this->httpClient);
+
+        $this->addressApi->setSdk($this);
+        $this->counterpartyApi->setSdk($this);
+        $this->documentApi->setSdk($this);
+        $this->trackingApi->setSdk($this);
+        $this->commonApi->setSdk($this);
     }
 
     /**
@@ -134,6 +145,31 @@ class NovaPoshtaSDK
     }
 
     /**
+     * Встановлює фейкові відповіді для API методів для використання в тестах
+     *
+     * @param array $mockResponses Масив фейкових відповідей у форматі ['ModelName.methodName' => ['response' => [...]], ...]
+     * @return self
+     */
+    public function setMockResponses(array $mockResponses): self
+    {
+        $this->mockResponses = $mockResponses;
+
+        return $this;
+    }
+
+    /**
+     * Очищає всі фейкові відповіді
+     *
+     * @return self
+     */
+    public function clearMockResponses(): self
+    {
+        $this->mockResponses = null;
+
+        return $this;
+    }
+
+    /**
      * Make a direct API request with a specific model and method
      *
      * @param string $modelName API model name
@@ -145,6 +181,52 @@ class NovaPoshtaSDK
      */
     public function request(string $modelName, string $calledMethod, array $methodProperties = []): array
     {
+        // Перевірка, чи є фейкова відповідь для цього запиту
+        $mockKey = "$modelName.$calledMethod";
+        if ($this->mockResponses !== null && isset($this->mockResponses[$mockKey])) {
+            $response = $this->mockResponses[$mockKey];
+
+            // Якщо в фейковій відповіді є спеціальний ключ 'params',
+            // то перевіряємо, чи співпадають передані параметри
+            if (isset($response['params'])) {
+                $match = true;
+                foreach ($response['params'] as $key => $value) {
+                    if (! isset($methodProperties[$key]) || $methodProperties[$key] !== $value) {
+                        $match = false;
+
+                        break;
+                    }
+                }
+
+                // Якщо параметри не співпадають, шукаємо іншу відповідь
+                if (! $match) {
+                    foreach ($this->mockResponses as $key => $mockResponse) {
+                        if ($key === $mockKey && isset($mockResponse['params'])) {
+                            $matchInner = true;
+                            foreach ($mockResponse['params'] as $paramKey => $paramValue) {
+                                if (! isset($methodProperties[$paramKey]) || $methodProperties[$paramKey] !== $paramValue) {
+                                    $matchInner = false;
+
+                                    break;
+                                }
+                            }
+
+                            if ($matchInner) {
+                                return $mockResponse['response']['data'] ?? [];
+                            }
+                        }
+                    }
+
+                    // Якщо не знайдено фейкову відповідь з відповідними параметрами,
+                    // продовжуємо з оригінальним запитом
+                    return $this->httpClient->request($modelName, $calledMethod, $methodProperties);
+                }
+            }
+
+            // Повертаємо дані з фейкової відповіді
+            return $response['response']['data'] ?? [];
+        }
+
         return $this->httpClient->request($modelName, $calledMethod, $methodProperties);
     }
 
@@ -160,6 +242,51 @@ class NovaPoshtaSDK
      */
     public function requestWithFullResponse(string $modelName, string $calledMethod, array $methodProperties = []): NovaPoshtaResponse
     {
+        $mockKey = "$modelName.$calledMethod";
+        if ($this->mockResponses !== null && isset($this->mockResponses[$mockKey])) {
+            $response = $this->mockResponses[$mockKey];
+
+            if (isset($response['params'])) {
+                $match = true;
+                foreach ($response['params'] as $key => $value) {
+                    if (! isset($methodProperties[$key]) || $methodProperties[$key] !== $value) {
+                        $match = false;
+
+                        break;
+                    }
+                }
+
+                if (! $match) {
+                    foreach ($this->mockResponses as $key => $mockResponse) {
+                        if ($key === $mockKey && isset($mockResponse['params'])) {
+                            $matchInner = true;
+                            foreach ($mockResponse['params'] as $paramKey => $paramValue) {
+                                if (! isset($methodProperties[$paramKey]) || $methodProperties[$paramKey] !== $paramValue) {
+                                    $matchInner = false;
+
+                                    break;
+                                }
+                            }
+
+                            if ($matchInner) {
+                                return new NovaPoshtaResponse(
+                                    $mockResponse['response'],
+                                    $mockResponse['statusCode'] ?? 200
+                                );
+                            }
+                        }
+                    }
+
+                    return $this->httpClient->requestWithFullResponse($modelName, $calledMethod, $methodProperties);
+                }
+            }
+
+            return new NovaPoshtaResponse(
+                $response['response'],
+                $response['statusCode'] ?? 200
+            );
+        }
+
         return $this->httpClient->requestWithFullResponse($modelName, $calledMethod, $methodProperties);
     }
 }

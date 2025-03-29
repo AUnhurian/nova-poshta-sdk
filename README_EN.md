@@ -284,6 +284,91 @@ Tests are organized by API modules and use HTTP request mocking to simulate work
 
 A detailed description of the testing system can be found in [TESTING_EN.md](TESTING_EN.md).
 
+## Using Mock Responses in Your Tests
+
+The SDK provides a mechanism for setting up fake API responses for your integration tests. This can be useful when you want to test your application's interaction with the Nova Poshta API without making actual API calls.
+
+```php
+// Create SDK instance
+$sdk = new \AUnhurian\NovaPoshta\SDK\NovaPoshtaSDK('your_api_key');
+
+// Set up mock responses
+$mockResponses = [
+    // Mock for getAreas request
+    'Address.getAreas' => [
+        'response' => [
+            'success' => true,
+            'data' => [
+                [
+                    'Ref' => '71508128-9b87-11de-822f-000c2965ae0e',
+                    'Description' => 'Kyiv oblast',
+                    'AreasCenter' => '8d5a980d-391c-11dd-90d9-001a92567626',
+                ]
+            ],
+            'errors' => [],
+            'warnings' => [],
+            'info' => [],
+        ],
+    ],
+    
+    // Mock with parameter matching
+    'Address.getCities' => [
+        // This will only match if parameters include 'FindByString' => 'Kyiv'
+        'params' => [
+            'FindByString' => 'Kyiv',
+        ],
+        'response' => [
+            'success' => true,
+            'data' => [
+                [
+                    'Ref' => '8d5a980d-391c-11dd-90d9-001a92567626',
+                    'Description' => 'Kyiv',
+                ]
+            ],
+            'errors' => [],
+            'warnings' => [],
+            'info' => [],
+        ],
+    ],
+    
+    // Mock for a failed request
+    'Address.getWarehouses' => [
+        'response' => [
+            'success' => false,
+            'data' => [],
+            'errors' => ['API error message'],
+            'warnings' => [],
+            'info' => [],
+        ],
+        'statusCode' => 400,
+    ],
+];
+
+// Set the mock responses
+$sdk->setMockResponses($mockResponses);
+
+// Now SDK will use mock responses instead of making actual API calls
+$areas = $sdk->address()->getAreas();
+// $areas will contain the mock data
+
+// For requests with matching parameters
+$cities = $sdk->address()->getCities(findByString: 'Kyiv');
+// $cities will contain the mock data because parameters match
+
+// Clear mock responses to revert to normal behavior
+$sdk->clearMockResponses();
+```
+
+The mock responses system supports parameter matching, allowing you to define different responses based on the input parameters. This is particularly useful for testing different scenarios with the same API method.
+
+Each mock response should be structured as follows:
+
+- Use `'response'` to define the full response structure (including `success`, `data`, `errors`, etc.)
+- Optionally use `'params'` to define parameters that must match for this mock to be used
+- Optionally set `'statusCode'` (defaults to 200) to simulate different HTTP status codes
+
+When using this feature in your tests, it's recommended to always clear mock responses after each test to ensure that tests don't affect each other.
+
 ## Exceptions
 
 The SDK uses an exception system for error handling:

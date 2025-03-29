@@ -61,6 +61,138 @@ $addressApi = new AddressApi($httpClient);
 $result = $addressApi->getAreas();
 ```
 
+## Using Mock Responses in Integration Tests
+
+In addition to the Mockery approach described above, which is used internally for SDK unit tests, the SDK also provides a built-in mechanism for setting up mock responses that can be used in your own integration tests.
+
+This approach is more convenient when you want to test your application's code that uses the Nova Poshta SDK, as it doesn't require you to modify the SDK's internals.
+
+```php
+// Create SDK instance with your API key
+$sdk = new \AUnhurian\NovaPoshta\SDK\NovaPoshtaSDK('your_api_key');
+
+// Set up mock responses
+$mockResponses = [
+    // Define a mock response for Address.getAreas
+    'Address.getAreas' => [
+        'response' => [
+            'success' => true,
+            'data' => [
+                ['Ref' => '123', 'Description' => 'Area 1'],
+                ['Ref' => '456', 'Description' => 'Area 2'],
+            ],
+            'errors' => [],
+            'warnings' => [],
+            'info' => []
+        ],
+    ],
+    
+    // Mock response for getCities with parameter matching
+    'Address.getCities' => [
+        'params' => [
+            'FindByString' => 'Test City',
+        ],
+        'response' => [
+            'success' => true,
+            'data' => [
+                ['Ref' => '789', 'Description' => 'Test City'],
+            ],
+            'errors' => [],
+            'warnings' => [],
+            'info' => []
+        ],
+    ],
+];
+
+// Apply the mock responses to the SDK
+$sdk->setMockResponses($mockResponses);
+
+// Now all API calls will use the mock data
+$areas = $sdk->address()->getAreas();
+// $areas will contain the mock data defined above
+
+// Clean up after testing
+$sdk->clearMockResponses();
+```
+
+The mock responses system supports parameter matching, which allows you to define different responses for the same API method based on the input parameters. This is particularly useful for testing different scenarios:
+
+```php
+$mockResponses = [
+    // Different responses for getCities based on parameters
+    'Address.getCities' => [
+        'params' => [
+            'FindByString' => 'Kyiv',
+        ],
+        'response' => [
+            'success' => true,
+            'data' => [
+                ['Ref' => '123', 'Description' => 'Kyiv'],
+            ],
+            'errors' => [],
+            'warnings' => [],
+            'info' => []
+        ],
+    ],
+    
+    // Another mock for the same method but with different parameters
+    'Address.getCities' => [
+        'params' => [
+            'FindByString' => 'Lviv',
+        ],
+        'response' => [
+            'success' => true,
+            'data' => [
+                ['Ref' => '456', 'Description' => 'Lviv'],
+            ],
+            'errors' => [],
+            'warnings' => [],
+            'info' => []
+        ],
+    ],
+    
+    // Mock for error response
+    'Address.getCities' => [
+        'params' => [
+            'FindByString' => 'Error',
+        ],
+        'response' => [
+            'success' => false,
+            'data' => [],
+            'errors' => ['City not found'],
+            'warnings' => [],
+            'info' => []
+        ],
+        'statusCode' => 400,
+    ],
+];
+
+$sdk->setMockResponses($mockResponses);
+
+// Each call will get a different response based on parameters
+$kyivCities = $sdk->address()->getCities(findByString: 'Kyiv');
+$lvivCities = $sdk->address()->getCities(findByString: 'Lviv');
+
+// This will throw an exception because success is false
+try {
+    $errorCities = $sdk->address()->getCities(findByString: 'Error');
+} catch (NovaPoshtaApiException $e) {
+    // Handle the exception
+}
+```
+
+### Best Practices for Mock Responses
+
+1. **Clear mocks after tests**: Always clear mock responses after each test to prevent interference between tests.
+
+2. **Match the actual API structure**: Make sure your mock responses match the structure of actual Nova Poshta API responses.
+
+3. **Test error scenarios**: Use mock responses to test how your code handles API errors by setting `'success' => false`.
+
+4. **Use parameter matching**: When testing methods that accept different parameters, set up different mock responses for each parameter combination.
+
+5. **Set appropriate status codes**: For error responses, set appropriate HTTP status codes to simulate real-world conditions.
+
 ## Writing New Tests
 
 When adding new functionality or fixing bugs, follow these guidelines for writing tests:
