@@ -3,10 +3,10 @@
 namespace NovaPoshta\SDK;
 
 use NovaPoshta\SDK\Api\AddressApi;
+use NovaPoshta\SDK\Api\CommonApi;
 use NovaPoshta\SDK\Api\CounterpartyApi;
 use NovaPoshta\SDK\Api\DocumentApi;
 use NovaPoshta\SDK\Api\TrackingApi;
-use NovaPoshta\SDK\Api\CommonApi;
 use NovaPoshta\SDK\Config\NovaPoshtaConfig;
 use NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
 use NovaPoshta\SDK\Http\NovaPoshtaResponse;
@@ -53,14 +53,14 @@ class NovaPoshtaSDK
 
     /**
      * Create a new NovaPoshtaSDK instance
-     * 
+     *
      * @param string $apiKey API key from Nova Poshta
      */
     public function __construct(string $apiKey)
     {
         $this->config = new NovaPoshtaConfig($apiKey);
         $this->httpClient = new NovaPoshtaHttpClient($this->config);
-        
+
         // Initialize API modules
         $this->addressApi = new AddressApi($this->httpClient);
         $this->counterpartyApi = new CounterpartyApi($this->httpClient);
@@ -71,7 +71,7 @@ class NovaPoshtaSDK
 
     /**
      * Get the Address API module
-     * 
+     *
      * @return AddressApi
      */
     public function address(): AddressApi
@@ -81,7 +81,7 @@ class NovaPoshtaSDK
 
     /**
      * Get the Counterparty API module
-     * 
+     *
      * @return CounterpartyApi
      */
     public function counterparty(): CounterpartyApi
@@ -91,7 +91,7 @@ class NovaPoshtaSDK
 
     /**
      * Get the Document API module
-     * 
+     *
      * @return DocumentApi
      */
     public function document(): DocumentApi
@@ -101,7 +101,7 @@ class NovaPoshtaSDK
 
     /**
      * Get the Tracking API module
-     * 
+     *
      * @return TrackingApi
      */
     public function tracking(): TrackingApi
@@ -111,7 +111,7 @@ class NovaPoshtaSDK
 
     /**
      * Get the Common API module (reference data)
-     * 
+     *
      * @return CommonApi
      */
     public function common(): CommonApi
@@ -121,17 +121,17 @@ class NovaPoshtaSDK
 
     /**
      * Get the SDK configuration
-     * 
+     *
      * @return NovaPoshtaConfig
      */
     public function getConfig(): NovaPoshtaConfig
     {
         return $this->config;
     }
-    
+
     /**
      * Make a direct API request with a specific model and method
-     * 
+     *
      * @param string $modelName API model name
      * @param string $calledMethod API method name
      * @param array $methodProperties Method properties
@@ -141,10 +141,10 @@ class NovaPoshtaSDK
     {
         return $this->httpClient->request($modelName, $calledMethod, $methodProperties);
     }
-    
+
     /**
      * Make a direct API request with a specific model and method and get full response object
-     * 
+     *
      * @param string $modelName API model name
      * @param string $calledMethod API method name
      * @param array $methodProperties Method properties
