@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Api;
 
-use Mockery;
 use AUnhurian\NovaPoshta\SDK\Api\CounterpartyApi;
 use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
+use Mockery;
 use Tests\TestCase;
 
 class CounterpartyApiTest extends TestCase

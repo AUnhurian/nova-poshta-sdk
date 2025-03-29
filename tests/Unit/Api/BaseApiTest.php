@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Api;
 
-use Mockery;
 use AUnhurian\NovaPoshta\SDK\Api\BaseApi;
 use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
 use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaResponse;
+use Mockery;
 use Tests\TestCase;
 
 class BaseApiTest extends TestCase
@@ -18,7 +18,6 @@ class BaseApiTest extends TestCase
         parent::setUp();
         $this->httpClientMock = Mockery::mock(NovaPoshtaHttpClient::class);
 
-        // Створюємо конкретний екземпляр абстрактного класу через анонімний клас
         $this->baseApi = new class ($this->httpClientMock) extends BaseApi {
             protected string $modelName = 'TestModel';
 

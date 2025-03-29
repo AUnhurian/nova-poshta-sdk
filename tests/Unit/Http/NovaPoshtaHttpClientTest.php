@@ -2,14 +2,14 @@
 
 namespace Tests\Unit\Http;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
 use AUnhurian\NovaPoshta\SDK\Config\NovaPoshtaConfig;
 use AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaApiException;
 use AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaHttpException;
 use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use ReflectionClass;
 use Tests\TestCase;
 

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace AUnhurian\NovaPoshta\SDK\Http;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 use AUnhurian\NovaPoshta\SDK\Config\NovaPoshtaConfig;
 use AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaApiException;
 use AUnhurian\NovaPoshta\SDK\Exceptions\NovaPoshtaHttpException;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * HTTP client for Nova Poshta API

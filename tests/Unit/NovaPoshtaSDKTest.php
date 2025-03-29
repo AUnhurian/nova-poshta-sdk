@@ -2,7 +2,6 @@
 
 namespace Tests\Unit;
 
-use Mockery;
 use AUnhurian\NovaPoshta\SDK\Api\AddressApi;
 use AUnhurian\NovaPoshta\SDK\Api\CommonApi;
 use AUnhurian\NovaPoshta\SDK\Api\CounterpartyApi;
@@ -12,6 +11,7 @@ use AUnhurian\NovaPoshta\SDK\Config\NovaPoshtaConfig;
 use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaHttpClient;
 use AUnhurian\NovaPoshta\SDK\Http\NovaPoshtaResponse;
 use AUnhurian\NovaPoshta\SDK\NovaPoshtaSDK;
+use Mockery;
 use Tests\TestCase;
 
 class NovaPoshtaSDKTest extends TestCase
