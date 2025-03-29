@@ -1,0 +1,50 @@
+{
+    "name": "novaposhta/sdk",
+    "description": "Сучасний PHP SDK для інтеграції з API Нової Пошти",
+    "keywords": ["nova poshta", "sdk", "api", "новапошта", "нова пошта", "api клієнт"],
+    "homepage": "https://github.com/novaposhta/sdk",
+    "version": "1.0.0",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nova Poshta SDK Team"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.6.12",
+        "pestphp/pest": "^3.7.1",
+        "phpstan/phpstan": "^1.10",
+        "friendsofphp/php-cs-fixer": "^3.14"
+    },
+    "autoload": {
+        "psr-4": {
+            "NovaPoshta\\SDK\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "phpstan": "phpstan analyse",
+        "cs-check": "php-cs-fixer check --verbose",
+        "cs-fix": "php-cs-fixer fix --verbose"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
