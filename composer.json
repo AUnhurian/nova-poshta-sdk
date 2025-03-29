@@ -1,6 +1,6 @@
 {
     "name": "aunhurian/nova-poshta-sdk",
-    "description": "Сучасний PHP SDK для інтеграції з API Нової Пошти",
+    "description": "PHP SDK для інтеграції з API Нової Пошти",
     "keywords": ["nova poshta", "sdk", "api", "новапошта", "нова пошта", "api клієнт"],
     "homepage": "https://github.com/aunhurian/nova-poshta-sdk",
     "version": "1.0.0",
