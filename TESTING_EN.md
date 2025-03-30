@@ -170,12 +170,12 @@ $mockResponses = [
 $sdk->setMockResponses($mockResponses);
 
 // Each call will get a different response based on parameters
-$kyivCities = $sdk->address()->getCities(findByString: 'Kyiv');
-$lvivCities = $sdk->address()->getCities(findByString: 'Lviv');
+$kyivCities = $sdk->address()->getCities(null, 'Kyiv');
+$lvivCities = $sdk->address()->getCities(null, 'Lviv');
 
 // This will throw an exception because success is false
 try {
-    $errorCities = $sdk->address()->getCities(findByString: 'Error');
+    $errorCities = $sdk->address()->getCities(null, 'Error');
 } catch (NovaPoshtaApiException $e) {
     // Handle the exception
 }

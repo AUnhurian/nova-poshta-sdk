@@ -32,7 +32,13 @@ $apiKey = 'ваш_api_ключ';
 $sdk = new \AUnhurian\NovaPoshta\SDK\NovaPoshtaSDK($apiKey);
 
 // Отримання списку міст
-$cities = $sdk->address()->getCities(findByString: 'Київ');
+$cities = $sdk->address()->getCities(null, 'Київ');
+
+// Параметри для пошуку відділень
+$warehouseParams = [
+    'FindByString' => 'Відділення'
+    // інші параметри
+];
 
 // Отримання списку відділень
 $warehouses = $sdk->address()->getWarehouses(
@@ -76,7 +82,7 @@ $areas = $sdk->address()->getAreas();
 $settlements = $sdk->address()->searchSettlements('Київ');
 
 // Отримання списку міст з фільтрацією
-$cities = $sdk->address()->getCities(findByString: 'Київ', page: 1, limit: 20);
+$cities = $sdk->address()->getCities(null, 'Київ', 1, 20);
 
 // Отримання списку відділень
 $warehouses = $sdk->address()->getWarehouses(
@@ -90,10 +96,7 @@ $warehouses = $sdk->address()->getWarehouses(
 $warehouseTypes = $sdk->address()->getWarehouseTypes();
 
 // Отримання вулиць у місті
-$streets = $sdk->address()->getStreet(
-    cityRef: '8d5a980d-391c-11dd-90d9-001a92567626',
-    findByString: 'Хрещатик'
-);
+$streets = $sdk->address()->getStreet('city_ref', 'Хрещатик', 1, 10);
 ```
 
 ### CounterpartyApi
@@ -117,12 +120,7 @@ $counterparty = $sdk->counterparty()->save(
 );
 
 // Пошук контрагентів
-$counterparties = $sdk->counterparty()->getCounterparties(
-    findByString: 'Пет',
-    counterpartyProperty: 'Recipient',
-    page: 1,
-    limit: 20
-);
+$counterparties = $sdk->counterparty()->getCounterparties(null, 'Пет', 1, 10);
 
 // Отримання контактних осіб контрагента
 $contactPersons = $sdk->counterparty()->getCounterpartyContactPersons(
@@ -352,7 +350,7 @@ $areas = $sdk->address()->getAreas();
 // $areas буде містити фейкові дані
 
 // Для запитів з перевіркою параметрів
-$cities = $sdk->address()->getCities(findByString: 'Київ');
+$cities = $sdk->address()->getCities(null, 'Київ');
 // $cities буде містити фейкові дані, оскільки параметри збігаються
 
 // Очищення фейкових відповідей для повернення до нормальної поведінки

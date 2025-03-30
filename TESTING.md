@@ -280,15 +280,11 @@ $mockResponses = [
 $sdk->setMockResponses($mockResponses);
 
 // Кожен виклик отримає різну відповідь на основі параметрів
-$kyivCities = $sdk->address()->getCities(findByString: 'Київ');
-$lvivCities = $sdk->address()->getCities(findByString: 'Львів');
+$kyivCities = $sdk->address()->getCities(null, 'Київ');
+$lvivCities = $sdk->address()->getCities(null, 'Львів');
 
-// Це викличе виключення, оскільки success є false
-try {
-    $errorCities = $sdk->address()->getCities(findByString: 'Error');
-} catch (NovaPoshtaApiException $e) {
-    // Обробка виключення
-}
+// Запит, який призведе до винятку
+$errorCities = $sdk->address()->getCities(null, 'Error');
 ```
 
 ### Найкращі практики для фейкових відповідей

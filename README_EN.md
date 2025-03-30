@@ -32,7 +32,7 @@ $apiKey = 'your_api_key';
 $sdk = new \AUnhurian\NovaPoshta\SDK\NovaPoshtaSDK($apiKey);
 
 // Get list of cities
-$cities = $sdk->address()->getCities(findByString: 'Kyiv');
+$cities = $sdk->address()->getCities(null, 'Kyiv');
 
 // Get list of warehouses
 $warehouses = $sdk->address()->getWarehouses(
@@ -76,7 +76,7 @@ $areas = $sdk->address()->getAreas();
 $settlements = $sdk->address()->searchSettlements('Kyiv');
 
 // Get list of cities with filtering
-$cities = $sdk->address()->getCities(findByString: 'Kyiv', page: 1, limit: 20);
+$cities = $sdk->address()->getCities(null, 'Kyiv', 1, 20);
 
 // Get list of warehouses
 $warehouses = $sdk->address()->getWarehouses(
@@ -90,10 +90,7 @@ $warehouses = $sdk->address()->getWarehouses(
 $warehouseTypes = $sdk->address()->getWarehouseTypes();
 
 // Get streets in a city
-$streets = $sdk->address()->getStreet(
-    cityRef: '8d5a980d-391c-11dd-90d9-001a92567626',
-    findByString: 'Khreshchatyk'
-);
+$streets = $sdk->address()->getStreet('city_ref', 'Khreshchatyk', 1, 10);
 ```
 
 ### CounterpartyApi
@@ -117,12 +114,7 @@ $counterparty = $sdk->counterparty()->save(
 );
 
 // Search for counterparties
-$counterparties = $sdk->counterparty()->getCounterparties(
-    findByString: 'Smith',
-    counterpartyProperty: 'Recipient',
-    page: 1,
-    limit: 20
-);
+$counterparties = $sdk->counterparty()->getCounterparties(null, 'Smith', 1, 10);
 
 // Get counterparty contact persons
 $contactPersons = $sdk->counterparty()->getCounterpartyContactPersons(
@@ -352,7 +344,7 @@ $areas = $sdk->address()->getAreas();
 // $areas will contain the mock data
 
 // For requests with matching parameters
-$cities = $sdk->address()->getCities(findByString: 'Kyiv');
+$cities = $sdk->address()->getCities(null, 'Kyiv');
 // $cities will contain the mock data because parameters match
 
 // Clear mock responses to revert to normal behavior
@@ -394,3 +386,9 @@ try {
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
+
+// Parameters for warehouses search
+$warehouseParams = [
+    'FindByString' => 'Department'
+    // Other parameters...
+]; 
