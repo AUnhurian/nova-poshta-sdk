@@ -42,8 +42,10 @@ $warehouseParams = [
 
 // Отримання списку відділень
 $warehouses = $sdk->address()->getWarehouses(
-    cityRef: '8d5a980d-391c-11dd-90d9-001a92567626', // Ref Києва
-    findByString: 'Відділення'
+    '8d5a980d-391c-11dd-90d9-001a92567626',
+    'Відділення',
+    1,
+    20
 );
 
 // Відстеження посилки
@@ -86,10 +88,10 @@ $cities = $sdk->address()->getCities(null, 'Київ', 1, 20);
 
 // Отримання списку відділень
 $warehouses = $sdk->address()->getWarehouses(
-    cityRef: '8d5a980d-391c-11dd-90d9-001a92567626',
-    findByString: 'Відділення',
-    page: 1,
-    limit: 20
+    '8d5a980d-391c-11dd-90d9-001a92567626',
+    'Відділення',
+    1,
+    20
 );
 
 // Отримання типів відділень
@@ -104,19 +106,24 @@ $streets = $sdk->address()->getStreet('city_ref', 'Хрещатик', 1, 10);
 ```php
 // Створення нового контрагента (фізична особа)
 $counterparty = $sdk->counterparty()->save(
-    counterpartyType: 'PrivatePerson',
-    firstName: 'Іван',
-    lastName: 'Петренко',
-    middleName: 'Васильович',
-    phone: '380991234567',
-    email: 'test@example.com'
+    'PrivatePerson',
+    'Іван',
+    'Петренко',
+    'Васильович',
+    '380991234567',
+    'test@example.com'
 );
 
 // Створення нового контрагента (організація)
 $counterparty = $sdk->counterparty()->save(
-    counterpartyType: 'Organization',
-    companyName: 'ТОВ "Компанія"',
-    edrpou: '12345678'
+    'Organization',
+    null,
+    null,
+    null,
+    null,
+    null,
+    'ТОВ "Компанія"',
+    '12345678'
 );
 
 // Пошук контрагентів
@@ -124,8 +131,8 @@ $counterparties = $sdk->counterparty()->getCounterparties(null, 'Пет', 1, 10)
 
 // Отримання контактних осіб контрагента
 $contactPersons = $sdk->counterparty()->getCounterpartyContactPersons(
-    ref: '005056801329',
-    counterpartyProperty: 'Recipient'
+    '005056801329',
+    'Recipient'
 );
 ```
 
@@ -134,29 +141,29 @@ $contactPersons = $sdk->counterparty()->getCounterpartyContactPersons(
 ```php
 // Розрахунок вартості доставки
 $cost = $sdk->document()->getDocumentPrice(
-    citySender: '8d5a980d-391c-11dd-90d9-001a92567626',
-    cityRecipient: 'db5c88de-391c-11dd-90d9-001a92567626',
-    weight: '1',
-    serviceType: 'WarehouseWarehouse',
-    cost: 500,
-    cargoType: 1,
-    seatsAmount: 1
+    '8d5a980d-391c-11dd-90d9-001a92567626',
+    'db5c88de-391c-11dd-90d9-001a92567626',
+    '1',
+    'WarehouseWarehouse',
+    500,
+    1,
+    1
 );
 
 // Розрахунок дати доставки
 $date = $sdk->document()->getDocumentDeliveryDate(
-    citySender: '8d5a980d-391c-11dd-90d9-001a92567626',
-    cityRecipient: 'db5c88de-391c-11dd-90d9-001a92567626',
-    serviceType: 'WarehouseWarehouse',
-    dateTime: '01.01.2023'
+    '8d5a980d-391c-11dd-90d9-001a92567626',
+    'db5c88de-391c-11dd-90d9-001a92567626',
+    'WarehouseWarehouse',
+    '01.01.2023'
 );
 
 // Отримання списку накладних
 $documents = $sdk->document()->getDocumentList(
-    dateTimeFrom: '01.01.2023',
-    dateTimeTo: '01.02.2023',
-    page: 1,
-    limit: 100
+    '01.01.2023',
+    '01.02.2023',
+    1,
+    100
 );
 
 // Створення нової накладної (спрощений приклад)
@@ -215,8 +222,8 @@ $serviceTypes = $sdk->common()->getServiceTypes();
 
 // Отримання часових інтервалів доставки
 $timeIntervals = $sdk->common()->getTimeIntervals(
-    recipientCityRef: 'db5c88de-391c-11dd-90d9-001a92567626',
-    dateTime: '01.01.2023'
+    'db5c88de-391c-11dd-90d9-001a92567626',
+    '01.01.2023'
 );
 ```
 

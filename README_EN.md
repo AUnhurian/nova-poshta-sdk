@@ -36,8 +36,10 @@ $cities = $sdk->address()->getCities(null, 'Kyiv');
 
 // Get list of warehouses
 $warehouses = $sdk->address()->getWarehouses(
-    cityRef: '8d5a980d-391c-11dd-90d9-001a92567626', // Kyiv Ref
-    findByString: 'Department'
+    '8d5a980d-391c-11dd-90d9-001a92567626',
+    'Department',
+    1,
+    20
 );
 
 // Track package
@@ -80,10 +82,10 @@ $cities = $sdk->address()->getCities(null, 'Kyiv', 1, 20);
 
 // Get list of warehouses
 $warehouses = $sdk->address()->getWarehouses(
-    cityRef: '8d5a980d-391c-11dd-90d9-001a92567626',
-    findByString: 'Department',
-    page: 1,
-    limit: 20
+    '8d5a980d-391c-11dd-90d9-001a92567626',
+    'Department',
+    1,
+    20
 );
 
 // Get warehouse types
@@ -98,19 +100,24 @@ $streets = $sdk->address()->getStreet('city_ref', 'Khreshchatyk', 1, 10);
 ```php
 // Create a new counterparty (individual)
 $counterparty = $sdk->counterparty()->save(
-    counterpartyType: 'PrivatePerson',
-    firstName: 'John',
-    lastName: 'Smith',
-    middleName: 'Michael',
-    phone: '380991234567',
-    email: 'test@example.com'
+    'PrivatePerson',
+    'John',
+    'Smith',
+    'Michael',
+    '380991234567',
+    'test@example.com'
 );
 
 // Create a new counterparty (organization)
 $counterparty = $sdk->counterparty()->save(
-    counterpartyType: 'Organization',
-    companyName: 'LLC "Company"',
-    edrpou: '12345678'
+    'Organization',
+    null,
+    null,
+    null,
+    null,
+    null,
+    'LLC "Company"',
+    '12345678'
 );
 
 // Search for counterparties
@@ -118,8 +125,8 @@ $counterparties = $sdk->counterparty()->getCounterparties(null, 'Smith', 1, 10);
 
 // Get counterparty contact persons
 $contactPersons = $sdk->counterparty()->getCounterpartyContactPersons(
-    ref: '005056801329',
-    counterpartyProperty: 'Recipient'
+    '005056801329',
+    'Recipient'
 );
 ```
 
@@ -128,29 +135,29 @@ $contactPersons = $sdk->counterparty()->getCounterpartyContactPersons(
 ```php
 // Calculate delivery cost
 $cost = $sdk->document()->getDocumentPrice(
-    citySender: '8d5a980d-391c-11dd-90d9-001a92567626',
-    cityRecipient: 'db5c88de-391c-11dd-90d9-001a92567626',
-    weight: '1',
-    serviceType: 'WarehouseWarehouse',
-    cost: 500,
-    cargoType: 1,
-    seatsAmount: 1
+    '8d5a980d-391c-11dd-90d9-001a92567626',
+    'db5c88de-391c-11dd-90d9-001a92567626',
+    '1',
+    'WarehouseWarehouse',
+    500,
+    1,
+    1
 );
 
 // Calculate delivery date
 $date = $sdk->document()->getDocumentDeliveryDate(
-    citySender: '8d5a980d-391c-11dd-90d9-001a92567626',
-    cityRecipient: 'db5c88de-391c-11dd-90d9-001a92567626',
-    serviceType: 'WarehouseWarehouse',
-    dateTime: '01.01.2023'
+    '8d5a980d-391c-11dd-90d9-001a92567626',
+    'db5c88de-391c-11dd-90d9-001a92567626',
+    'WarehouseWarehouse',
+    '01.01.2023'
 );
 
 // Get list of shipments
 $documents = $sdk->document()->getDocumentList(
-    dateTimeFrom: '01.01.2023',
-    dateTimeTo: '01.02.2023',
-    page: 1,
-    limit: 100
+    '01.01.2023',
+    '01.02.2023',
+    1,
+    100
 );
 
 // Create a new shipment (simplified example)
@@ -209,8 +216,8 @@ $serviceTypes = $sdk->common()->getServiceTypes();
 
 // Get time intervals for delivery
 $timeIntervals = $sdk->common()->getTimeIntervals(
-    recipientCityRef: 'db5c88de-391c-11dd-90d9-001a92567626',
-    dateTime: '01.01.2023'
+    'db5c88de-391c-11dd-90d9-001a92567626',
+    '01.01.2023'
 );
 ```
 
